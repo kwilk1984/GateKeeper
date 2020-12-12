@@ -36,7 +36,7 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
     channel = client.get_channel(CHANNEL)
-    await channel.send(f'Hello {member}, please proceed to #customs and agree to the rules.')
+    await channel.send(f'Hello {member}, please proceed to #customs and agree to the rules to become a member.')
     print(f'{member} joined the server\n')
     print(f'Welcome message sent to {member}. . .\n')
 

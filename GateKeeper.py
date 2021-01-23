@@ -36,9 +36,11 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
     channel = client.get_channel(CHANNEL)
+    # Send message to check-point when the member joins
     await channel.send(f'Hello {member}, please proceed to #customs and agree to the rules to become a member.')
+    # Output to console that member has joined the server and the welcome message has been sent
     print(f'{member} joined the server\n')
-    print(f'Welcome message sent to {member}. . .\n')
+    print(f'Welcome message sent to {CHANNEL}. . .\n')
 
 
 # Add role by selecting emoji

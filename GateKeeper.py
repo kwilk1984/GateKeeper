@@ -1,9 +1,19 @@
-# GateKeeper 0.2.1
-
-# This bot will auto assign roles when a user reacts to a message with an emoji
-# When a member joins the bot will send a message welcoming the new member
+#################################################
+# Program:  GateKeeper
+# Version:  0.3.1
+# Version Date:  02/13/2021
+# Author:  Kevin Wilkins
+# Date:  11/14/2020
+# Contributor(s):  Donlon McGovern
+# Parameters:
+# When a new member to a Discord agrees to the rules of a server using
+#  the associated emoji, they will receive the 'member' role.
 # Console output will display the role and the username it is assigned to
+#################################################
 
+#################################################
+# Import dependencies
+#################################################
 import os
 import discord
 from dotenv import load_dotenv
@@ -13,13 +23,19 @@ intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents=intents)
 
+#################################################
+# Pull Discord token, guild, channel, and message
+# IDs from .env file
+#################################################
 TOKEN = os.getenv("DISCORD_TOKEN")
 GUILD = os.getenv("DISCORD_GUILD")
 MESSAGE = int(os.getenv("MESSAGE_ID"))
 CHANNEL = int(os.getenv("CHANNEL_ID"))
 
 
-# Check to make sure bot has connected to the server
+#################################################
+# Test and confirm bot has connected to Discord
+#################################################
 @client.event
 async def on_ready():
     for guild in client.guilds:
@@ -32,7 +48,11 @@ async def on_ready():
             break
 
 
-# Add role by selecting emoji
+#################################################
+# When member selects Sweet Justice they will be
+# given the 'member' role.  The 'member' role
+# cannot be removed unless done by the admins.
+#################################################
 @client.event
 async def on_raw_reaction_add(payload):
     message_id = payload.message_id
